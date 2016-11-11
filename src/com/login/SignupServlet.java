@@ -1,3 +1,4 @@
+
 package com.login;
 
 import java.io.IOException;
@@ -65,5 +66,6 @@ public class SignupServlet extends HttpServlet {
 		else{
 			out.print("<p>Please Enter Valid Details</p>");
 		}
-	}
+	
 }
+>>>>>>> 8da7ffea322c3ec3ae00f036355cffce84aee161
