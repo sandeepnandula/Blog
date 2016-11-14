@@ -23,6 +23,7 @@ public class Login extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
+		boolean b = false;
 
 		com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Entity user = new Entity("UserDetails", userName);
@@ -37,8 +38,11 @@ public class Login extends HttpServlet {
 				out.println("welcome");
 				out.println("<form action='Logout' method='get'><type='submit' value='Logout'></form>");
 				HttpSession session = request.getSession(true);
-
+				request.getRequestDispatcher("Logout.html").include(request, response); 
+				b = true;
 			}
+			if(b==false)
+				out.println("please enter valid details");
 		} catch (Exception e) {
 			out.println("regiser first");
 		}
