@@ -24,28 +24,38 @@ public class Login extends HttpServlet {
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 		boolean b = false;
+		if (Validation.loginNullCheck(userName, password)) {
+			com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory
+					.getDatastoreService();
+			Entity user = new Entity("UserDetails", userName);
+			Key key = KeyFactory.createKey("UserDetails", userName);
+			key = KeyFactory.createKey("UserDetails", userName);
+			
+			
+			Query q = new Query("UserDetails").setAncestor(key);
+			PreparedQuery pq = datastore.prepare(q);
 
-		com.google.appengine.api.datastore.DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Entity user = new Entity("UserDetails", userName);
-		Key key = KeyFactory.createKey("UserDetails", userName);
-		key = KeyFactory.createKey("UserDetails", userName);
-		Query q = new Query("UserDetails").setAncestor(key);
-		PreparedQuery pq = datastore.prepare(q);
-		try {
+			try {
 
-			for (Entity user1 : pq.asIterable()) {
-				user1.getProperty("password").equals(password);
-				out.println("welcome");
-				out.println("<form action='Logout' method='get'><type='submit' value='Logout'></form>");
-				HttpSession session = request.getSession(true);
-				request.getRequestDispatcher("Logout.html").include(request, response); 
-				b = true;
+				for (Entity user1 : pq.asIterable()) {
+					user1.getProperty("password").equals(password);
+					out.println("welcome");
+					HttpSession session = request.getSession(true);
+					request.getRequestDispatcher("Logout.html").include(request, response);
+					b = true;
+				}
+				if (b == false)
+					out.println("please enter valid details");
+			} catch (Exception e) {
+				out.println("regiser first");
 			}
-			if(b==false)
-				out.println("please enter valid details");
-		} catch (Exception e) {
-			out.println("regiser first");
+		} else {
+
+			out.println("<p>enter valid text properly</p>");
+			request.getRequestDispatcher("Login.html").include(request, response);
+
 		}
 
 	}
+
 }

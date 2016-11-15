@@ -1,7 +1,6 @@
 
 package com.login;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -17,22 +16,6 @@ import com.google.appengine.api.datastore.KeyFactory;
 @SuppressWarnings("serial")
 public class SignupServlet extends HttpServlet {
 
-	public static boolean checkUser(Key name) {
-		boolean status = false;
-		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-
-		try {
-			ds.get(name);
-
-			status = true;
-		} catch (EntityNotFoundException e) {
-			e.printStackTrace();
-			status = false;
-					}
-
-		return status;
-	}
-
 	public void doPost(HttpServletRequest request, HttpServletResponse resp) throws IOException {
 		com.google.appengine.api.datastore.DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		PrintWriter out = resp.getWriter();
@@ -44,8 +27,8 @@ public class SignupServlet extends HttpServlet {
 
 			Entity user = new Entity("UserDetails", userName);
 			Key key = KeyFactory.createKey("UserDetails", userName);
-			System.out.println(checkUser(key));
-			if (checkUser(key) == false) {
+
+			if (Validation.checkUser(key) == false) {
 				user.setProperty("emailId", emailId);
 				user.setProperty("userName", userName);
 				user.setProperty("password", password);
@@ -53,7 +36,7 @@ public class SignupServlet extends HttpServlet {
 				out.print("<p>Your signup was successfull</p>");
 				out.print("<a href=\"ProfileServlet\"> Profile</a>");
 				out.print("<a href=\"LogoutServlet\"> Logout</a>");
-				
+
 			}
 
 			else {
