@@ -2,8 +2,8 @@
 html {
     background-image:    url(/Media/indexbp.jpg);
     background-size:     cover;                      /* <------ */
-    background-repeat:   no-repeat;
-    background-position: center center;              /* optional, center the image */
+    
+    background-position:inherit;           /* optional, center the image */
 }
 div p{
     color:white;

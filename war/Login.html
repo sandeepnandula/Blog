@@ -1,19 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="/Css/LoginStyleSheet.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript" language="javascript" src="/Js/MyJs.js">
+	
+</script>
 <title></title>
 
 </head>
-<body>
-	
-	<div>
-		<form action="Login" method="post">
-			Name <br><input type="text" name="username" class="input"> <br> Password<br><input type="password" name="password" class="input"> <br>
-			<button value="login" id="Login">Login</button>
+<body >
 
+	<div id="logincontent">
+		<!-- 		<form action="Login" method="post"> -->
+		Name <br> <input type="text" title="Enter your username" class="input" id="username">
+		<br> Password<br> <input type="password" title="Enter your password" id="password"
+			class="input"> <br>
+		<button id="Login">Login</button>
 
-		</form>
+		<p class="para"></p>
+		<!-- 		</form> -->
 	</div>
 
 </body>

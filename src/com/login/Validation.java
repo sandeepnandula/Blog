@@ -2,6 +2,7 @@ package com.login;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 
@@ -25,6 +26,13 @@ public class Validation {
 
 	public static boolean loginNullCheck(String userName, String password) {
 		if (userName != "" && password != "")
+			return true;
+		else
+			return false;
+	}
+
+	public static boolean SignupNullCheck(String userName, String password, String emailId) {
+		if (userName != "" && password != "" && emailId != "")
 			return true;
 		else
 			return false;

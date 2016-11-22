@@ -16,18 +16,20 @@ public class Logout extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		if (session != null) {
-			response.getWriter().println("session is logout");
+			// response.getWriter().println("session is logout");
 
 			session.invalidate();
 
 			// session.setMaxInactiveInterval(0); // The session will end in the
 			// 30
-			// // sec
-			// response.sendRedirect("index.html");
-		} else {
-			out.println("You Logout sucessfully");
-			request.getRequestDispatcher("index.html").include(request, response);
+
+			response.sendRedirect("welcome.jsp");
 		}
+		// else {
+		// out.println("You Logout sucessfully");
+		// request.getRequestDispatcher("index.html").include(request,
+		// response);
+		// }
 
 	}
 }
