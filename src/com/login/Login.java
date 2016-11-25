@@ -15,7 +15,6 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.apphosting.utils.remoteapi.RemoteApiPb.Response;
 
 @SuppressWarnings("serial")
 public class Login extends HttpServlet {

@@ -24,7 +24,7 @@ public class SignupServlet extends HttpServlet {
 		String emailId = request.getParameter("emailId1");
 		String userName = request.getParameter("username1");
 		String password = request.getParameter("password1");
-		if (Validation.SignupNullCheck(userName, password,emailId)) {
+		if (Validation.SignupNullCheck(userName, password, emailId)) {
 
 			Entity user = new Entity("UserDetails", userName);
 			Key key = KeyFactory.createKey("UserDetails", userName);
@@ -35,7 +35,7 @@ public class SignupServlet extends HttpServlet {
 				user.setProperty("password", password);
 				ds.put(user);
 				resp.getWriter().write("true");
-				
+
 			}
 
 			else {
@@ -44,10 +44,10 @@ public class SignupServlet extends HttpServlet {
 			}
 		} else {
 			out.println("<p>Please fill the each form</p>");
-			//request.getRequestDispatcher("Signup.html").include(request, resp);
+			// request.getRequestDispatcher("Signup.html").include(request,
+			// resp);
 		}
 		out.close();
 	}
-	
 
 }

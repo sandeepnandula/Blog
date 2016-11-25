@@ -30,8 +30,31 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Logout</servlet-name>
 		<url-pattern>/Logout</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>BlogDetails</servlet-name>
+		<servlet-class>com.login.BlogDetails</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BlogDetails</servlet-name>
+		<url-pattern>/BlogDetails</url-pattern>
+	</servlet-mapping>
 	
-	
+	<servlet>
+		<servlet-name>BlogCreation</servlet-name>
+		<servlet-class>com.login.BlogCreation</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BlogCreation</servlet-name>
+		<url-pattern>/BlogCreation</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>FechBlogDetails</servlet-name>
+		<servlet-class>com.login.FechBlogDetails</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FechBlogDetails</servlet-name>
+		<url-pattern>/FechBlogDetails</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>welcome.jsp</welcome-file>
 	</welcome-file-list>
