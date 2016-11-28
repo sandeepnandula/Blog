@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 @SuppressWarnings("serial")
 public class Logout extends HttpServlet {
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -23,7 +24,7 @@ public class Logout extends HttpServlet {
 			// session.setMaxInactiveInterval(0); // The session will end in the
 			// 30
 
-			response.sendRedirect("welcome.jsp");
+			response.sendRedirect("Index.jsp");
 		}
 		// else {
 		// out.println("You Logout sucessfully");

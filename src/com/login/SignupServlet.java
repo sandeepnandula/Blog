@@ -16,6 +16,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 
 @SuppressWarnings("serial")
 public class SignupServlet extends HttpServlet {
+	@Override
 
 	public void doPost(HttpServletRequest request, HttpServletResponse resp) throws IOException, ServletException {
 		com.google.appengine.api.datastore.DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
@@ -44,8 +45,7 @@ public class SignupServlet extends HttpServlet {
 			}
 		} else {
 			out.println("<p>Please fill the each form</p>");
-			// request.getRequestDispatcher("Signup.html").include(request,
-			// resp);
+
 		}
 		out.close();
 	}

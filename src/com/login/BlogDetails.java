@@ -13,8 +13,10 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
+
 @SuppressWarnings("serial")
 public class BlogDetails extends HttpServlet {
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		PrintWriter out = response.getWriter();
@@ -22,13 +24,14 @@ public class BlogDetails extends HttpServlet {
 
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Query q = new Query("BlogContent");
+		//q.addSort("	TimeOfCreation",SortDirection.DESCENDING );
 		PreparedQuery pq = datastore.prepare(q);
 		for (Entity e : pq.asIterable()) {
 			String username = e.getProperty("UserName").toString();
 			String title = e.getProperty("Title").toString();
 			out.print("<button class=\"bloglink\"  id=\"" + title + "\" value=\" " + username
-					+ "\">View</button> <p>Username:--</p>" + username + "BLOGTITLE :---" + title + "<br />");
+					+ "\">View</button><br/> <p>Username:" + username + "&nbsp;&nbsp;&nbsp;BlogTitle :" + title + "</p><br />");
 		}
-
+		out.close();
 	}
 }

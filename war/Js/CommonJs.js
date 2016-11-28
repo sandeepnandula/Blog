@@ -1,33 +1,32 @@
 $(document)
 		.ready(
 				function() {
+					$.post("BlogDetails", function(result) {
+						$("#blogdetails").html(result);
+						$(".bloglink").click(BlogContentFunc);
 
-					$.post({
-						url : 'BlogDetails',
-						success : function(result) {
-							$("#blogdetails").html(result);
-							$(".bloglink").click(
-									function() {
-										// var username = $("#bloglink").val();
-										var username = $(this).attr('value');
-										var title = $(this).attr('id');
-										console.log(username)
-										console.log(title)
-										var url = "FechBlogDetails?username="
-												+ username + "&title=" + title;
-										$.post({
-											url : url,
-											success : function(result) {
+						function BlogContentFunc() {
+							// var username = $("#bloglink").val();
+							var username = $(this).attr('value');
+							var title = $(this).attr('id');
+							console.log(username)
+							console.log(title)
+							var url = "FechBlogContent?username=" + username
+									+ "&title=" + title;
 
-											}
-										})
+							$.get(url, function(result) {
+								$("#test").html(result);
+								
+								console.log(result);
 
-									});
+							});
+							$("#test").toggle();
 						}
+
 					});
 
-					$("#blogform").click(function() {
-						$("#blogdetails").toggle();
+					$("#blogformbtn").click(function() {
+						$("#blogform").toggle();
 
 					});
 					$("#userlogin").click(function() {
@@ -50,7 +49,7 @@ $(document)
 							}
 						})
 					});
-					$("#blogbtn").click(blogFunc);
+					$("#blogcreatebtn").click(blogFunc);
 
 					function blogFunc() {
 						var title = document.getElementById('blogtitle').value; // var
@@ -61,36 +60,29 @@ $(document)
 						var discription = document
 								.getElementById('blogdiscription').value;
 
-	
 						console.log(title)
 						console.log(heading)
 						console.log(discription)
-						console.log(datetime)
-						var url = "BlogCreating?title=" + title + "&heading="
-								+ heading + "&discription=" + discription
-						"&datetime=" + datetime;
-						$.ajax({
-							url : url,
-							success : function(result) {
-								console.log("done")
-								history.go(0);
-								// "location.reload()",
-								// "history.go(0)",
-								// "location.href = location.href",
-								// "these are the methods to refresh a page"
-								// "location.href = location.pathname",
-								// "location.replace(location.pathname)",
-								// "location.reload(false)"
-								$("#blogdetails").hide();
-							}
+
+						$.post("BlogCreation", {
+							"title" : title,
+							"heading" : heading,
+							"discription" : discription
+
+						}, function(result) {
+
+							$("#blogdetails").hide();
+							history.go(0);
+							// "location.reload()",
+							// "history.go(0)",
+							// "location.href = location.href",
+							// "these are the methods to refresh a page"
+							// "location.href = location.pathname",
+							// "location.replace(location.pathname)",
+							// "location.reload(false)"
+
 						});
-						// $.post("BlogDetails", {
-						// title : title,
-						// heading : heading,
-						// discription : discription
-						// }, function(result) {
-						// console.log("sucess")
-						// });
+
 					}
 
 					function signInfunc() {
@@ -105,13 +97,8 @@ $(document)
 
 							if (result == "true") {
 
-								window.location.href = "welcome.jsp";
-								// if (!alert('You are sucessfully loged
-								// in')) {
-								//
-								// return false;
-								// }
-								// window.location.href = "welcome.jsp";
+								window.location.href = "Index.jsp";
+
 							}
 
 							$(".para").html(result);
@@ -132,7 +119,7 @@ $(document)
 						}, function(result) {
 
 							if (result == "true") {
-								window.location.href = "welcome.jsp";
+								window.location.href = "Index.jsp";
 								if (!alert('Thank you for Registration')) {
 
 									return false;

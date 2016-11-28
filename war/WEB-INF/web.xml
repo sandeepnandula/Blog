@@ -48,14 +48,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/BlogCreation</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>FechBlogDetails</servlet-name>
-		<servlet-class>com.login.FechBlogDetails</servlet-class>
+		<servlet-name>FechBlogContent</servlet-name>
+		<servlet-class>com.login.FechBlogContent</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>FechBlogDetails</servlet-name>
-		<url-pattern>/FechBlogDetails</url-pattern>
+		<servlet-name>FechBlogContent</servlet-name>
+		<url-pattern>/FechBlogContent</url-pattern>
 	</servlet-mapping>
+	
 	<welcome-file-list>
-		<welcome-file>welcome.jsp</welcome-file>
+		<welcome-file>Index.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

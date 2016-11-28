@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -15,24 +16,27 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 
 @SuppressWarnings("serial")
-public class FechBlogDetails extends HttpServlet {
+public class FechBlogContent extends HttpServlet {
 	@SuppressWarnings({ "deprecation", "unused" })
-	public void doPost(HttpServletResponse response, HttpServletRequest request) throws IOException {
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
+
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		String username = request.getParameter("username");
 		String title = request.getParameter("title");
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Query q = new Query("UserDetails").addFilter("Title", FilterOperator.EQUAL, title);
+
+		Query q = new Query("BlogContent").addFilter("Title", FilterOperator.EQUAL, title);
 		PreparedQuery pq = datastore.prepare(q);
 		for (Entity entity : pq.asIterable()) {
-			if (entity.getProperty("username").equals(username)) {
-				String title1 = (String) entity.getProperty("Title");
-				String heading = (String) entity.getProperty("Heading");
-				String discription = (String) entity.getProperty("Discription");
-				out.println("<h1" + title1 + "<h1>");
 
-			}
+			String title1 = (String) entity.getProperty("Title");
+			String heading = (String) entity.getProperty("Heading");
+			String discription = (String) entity.getProperty("Discription");
+			System.out.println("data is" + title1 + "heading is" + heading + "discription is" + discription);
+			out.println("<h1>"+title1+  "</h1><br><h2>"+heading+  "</h2><br><p>"+discription+  "</p>  ");
+
 		}
 
 	}

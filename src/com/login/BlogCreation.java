@@ -28,7 +28,8 @@ import com.sun.xml.internal.fastinfoset.util.QualifiedNameArray;
 @SuppressWarnings("serial")
 public class BlogCreation extends HttpServlet {
 	@SuppressWarnings({})
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		String title = request.getParameter("title");
@@ -52,7 +53,7 @@ public class BlogCreation extends HttpServlet {
 			datastore.put(BlogContent);
 			out.print("updated");
 
-			request.getRequestDispatcher("welcome.jsp").include(request, response);
+			request.getRequestDispatcher("Index.jsp").include(request, response);
 		} else {
 			out.println("you are not loged-In");
 		}
