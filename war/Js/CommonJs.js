@@ -16,11 +16,11 @@ $(document)
 
 							$.get(url, function(result) {
 								$("#test").html(result);
-								
+
 								console.log(result);
 
 							});
-							$("#test").toggle();
+
 						}
 
 					});
